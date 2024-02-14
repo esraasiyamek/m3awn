@@ -1,15 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Summarizer</title>
+    <title>التلخيص</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+    
+        input[type="file"] {
+          display: none;
+        }
+    
+        label {
+          display: inline-block;
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+    
+        button {
+          display: block;
+          margin-top: 10px;
+          background-color: #3498db;
+          color: white;
+          padding: 10px 20px;
+          font-size: 16px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+    
+        button:hover {
+          background-color: #2980b9;
+        }
+    
+        #summarizedText {
+          margin-top: 20px;
+          font-size: 18px;
+        }
+      </style>
 </head>
 <body>
-    <h1>PDF Summarizer</h1>
+    <h1>التلخيص</h1>
     <form id="uploadForm">
-        <input type="file" name="file" accept=".pdf">
-        <button type="button" onclick="summarizePDF()">Summarize</button>
+        <input type="file" id= "pdfInput" name="file" accept=".pdf">
+        <label for="pdfInput">ارفق الملف </label>
+        <button type="button" onclick="summarizePDF()">لخَص</button>
     </form>
     <div id="summaryResult"></div>
     
@@ -19,7 +61,7 @@
             const form = document.getElementById('uploadForm');
             const formData = new FormData(form);
     
-            fetch('http://127.0.0.1:5000/summarize', {
+            fetch('/summarize', {
                 method: 'POST',
                 body: formData,
             })
